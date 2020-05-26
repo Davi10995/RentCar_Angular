@@ -1,0 +1,47 @@
+
+<div align="center" style="margin-bottom: 20px" class="{{this.config.operations.search.active.toString()}}">
+  <label  >Ricerca <input #ricerca size="30" name="keyword" /></label>  <!-- -> (keyup)="search(filter.value, ricerca.value)" -->
+  <select style="margin-left: 15px" #filter>
+    <option value="nome">Nome</option>
+    <option value="cognome">Cognome</option>
+  </select>
+  <button type="button" style="margin-left: 10px" (click)="search(filter.value, ricerca.value)">Cerca</button>
+</div>
+<div align="center">
+<label style="margin-top: 20px">Show
+  <select [(ngModel)]="rows" (change)="pagination()">
+    <option *ngFor="let rows of config.operations.pagination.rowsForPage" value="{{rows}}">
+      {{rows}}
+    </option>
+  </select>
+  entries
+</label>
+</div>
+<div>
+  <table align="center" border="1" cellpadding="5" style="width: 50%" >
+  <!--  Stampa header -->
+    <tr>
+      <th *ngFor="let header of config.header">
+  <!--   Ordina in base alla colonna dell'header   -->
+        <input type="button" (click)="sort(header.key)" value="{{header.value}}">
+      </th>
+    </tr>
+  <!--  Stampa data tramite array ricevto in input-->
+    <tr *ngFor="let d of dataSearch">
+      <td *ngFor="let header of config.header">
+        {{d[header.key]}}</td>
+    </tr>
+  </table>
+  <nav class="{{pagesVisibility.toString()}}" style="float: right; padding-right: 20%; padding-top: 10px" aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item; {{previous.toString()}}"><button class="page-link" (click)="changePage(currentPage-1)">Previous</button></li>
+      <li class="page-item; {{previousPageVisibility.toString()}}"><button class="page-link" (click)="changePage(currentPage-1)">{{currentPage}}</button></li>
+      <li class="page-item"><button class="page-link">{{currentPage +1}}</button></li>
+      <li class="page-item; {{nextPageVisibility.toString()}}"><button class="page-link" (click)="changePage(currentPage+1)">{{currentPage +2}}</button></li>
+      <li class="page-item; {{next.toString()}}"><button class="page-link" (click)="changePage(currentPage+1)" >Next</button></li>
+    </ul>
+  </nav>
+</div>
+
+
+

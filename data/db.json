@@ -1,0 +1,40 @@
+{
+    "users": [
+      {
+      "id": "1",
+      "cf": "mario",
+      "nome": "Mario",
+      "cognome": "Rossi",
+      "password": "mario",
+      "tipo": "SuperUser",
+      "data" : "1955/10/10"
+      },
+      {
+        "id": "2",
+        "cf": "marco",
+        "nome": "Marco",
+        "cognome": "Rossi",
+        "password": "marco",
+        "tipo": "Customer",
+        "data" : "1955/10/10"
+      }
+    ],
+  "veicoli": [
+    {
+      "id": "1",
+      "targa": "CA881LM",
+      "modello": "Berlina",
+      "casaCostrutt": "Audi",
+      "annoImm": "1998",
+      "prenotabile": "true"
+    },
+    {
+      "id": "2",
+      "targa": "CA483LM",
+      "modello": "Spider",
+      "casaCostrutt": "VolksWagen",
+      "annoImm": "2012",
+      "prenotabile": "true"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+
+ td{
+   width: 25%;
+ }
+ th{
+   width: 25%;
+ }
+
+ .false{
+   visibility: hidden;
+ }
+ .true{
+   visibility: visible;
+ }

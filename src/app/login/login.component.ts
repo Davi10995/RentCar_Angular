@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {CallService} from '../call.service';
+import * as _ from 'lodash';
+import {User} from '../../model/user.model';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -6,10 +11,45 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  errorMessage = false;
+  localStorage: WindowLocalStorage;
+  profile = new FormGroup({
+    username: new FormControl('',
+      Validators.required),
+    password: new FormControl('',
+      Validators.required)
+  });
 
-  constructor() { }
+  users: User[] = [];
+  userLogin: User;
+
+  constructor(callService: CallService,
+              private route: ActivatedRoute,
+              private router: Router) {
+    callService.getData('user').subscribe((res: User[]) => {
+      for (let i = 0; i < res.length; i++){
+        this.users.push(res[i]);
+      }
+    });
+  }
 
   ngOnInit(): void {
+  }
+
+
+  loginValidate(){
+    this.userLogin = _.filter(this.users, {cf: this.profile.get('username').value, password: this.profile.get('password').value});
+    if (this.userLogin != null){
+      // from user to json
+      localStorage.setItem('currentUser', JSON.stringify(this.userLogin));
+      console.log(localStorage.getItem('currentUser'));
+      // from json to user
+      console.log((JSON.parse(localStorage.getItem('currentUser'))));
+      this.router.navigateByUrl('/home');
+    }
+    else {
+      this.errorMessage = true;
+    }
   }
 
 }
