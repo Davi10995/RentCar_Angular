@@ -36,5 +36,15 @@
       "annoImm": "2012",
       "prenotabile": "true"
     }
+  ],
+  "prenotazioni": [
+    {
+      "id": "1",
+      "dataInizio": "10/05/2020",
+      "dataFine": "10/06/2020",
+      "fk_user": "2",
+      "fk_veicolo": "1",
+      "approvata": "true"
+    }
   ]
 }

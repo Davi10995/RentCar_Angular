@@ -5,6 +5,9 @@ import * as _ from 'lodash';
 import {CallService} from '../call.service';
 import {Config} from '../../model/config/config.model';
 import {User} from '../../model/user.model';
+import {Veicolo} from '../../model/veicolo.model';
+import {Prenotazione} from '../../model/prenotazione.model';
+import {getLocaleFirstDayOfWeek} from '@angular/common';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -15,7 +18,6 @@ export class TableComponent implements OnInit {
   data = [];
   // Dichiarazione dei campi header della tabella Users
   @Input() config: Config;
-  // @Input() dato: string;
   dataSearch = [];
   rows = 5;
   nOfPages: number;
@@ -30,16 +32,55 @@ export class TableComponent implements OnInit {
   constructor(
     private callService: CallService
   ) {
-    callService.getData('user').subscribe((res: User[]) => {
-      for(let i = 0; i < res.length; i++){
-        this.data.push(res[i]);
-      }
-    });
   }
   ngOnInit(): void {
-      this.dataSearch = this.data;
-      this.pagination();
-      if (this.data.length > this.rows){
+    switch (this.config.dato) {
+      case 'user':
+        this.callService.getUsers().subscribe((res: User[]) => {
+          for (let i = 0; i < res.length; i++){
+            this.data.push(res[i]);
+          }
+          this.dataSearch = this.data;
+        });
+        break;
+      case 'veicoli':
+        this.callService.getVeicoli().subscribe((res: Veicolo[]) => {
+          for (let i = 0; i < res.length; i++){
+            this.data.push(res[i]);
+          }
+          this.dataSearch = this.data;
+        });
+        break;
+      case 'prenotazioni':
+        this.callService.getPrenotazioni().subscribe((res: Prenotazione[]) => {
+          for (let i = 0; i < res.length; i++){
+            const userid = res[i].fk_user;
+            const veicoloId = res[i].fk_veicolo;
+            this.callService.getUserById(userid).subscribe((resUser: User) => {
+              const user = resUser;
+              console.log('user preno:', user);
+              const dato = res[i];
+              console.log(dato);
+              console.log('username:' + user[0].nome);
+              dato.nomeUser = user[0].nome;
+              dato.cognomeUser = user[0].cognome;
+              console.log(dato);
+              console.log('nome-cognome: ', dato.nomeUser, dato.cognomeUser);
+              this.callService.getVeicoloById(veicoloId).subscribe((resVeic: Veicolo) => {
+              dato.modello = resVeic[0].modello;
+              dato.targa = resVeic[0].targa;
+              this.data.push(dato);
+              });
+            });
+
+          }
+          this.dataSearch = this.data;
+        });
+        break;
+    }
+
+    this.pagination();
+    if (this.data.length > this.rows){
         this.pagesVisibility = true;
         this.next = true;
         this.nextPageVisibility = true;

@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   constructor(callService: CallService,
               private route: ActivatedRoute,
               private router: Router) {
-    callService.getData('user').subscribe((res: User[]) => {
+    callService.getUsers().subscribe((res: User[]) => {
       for (let i = 0; i < res.length; i++){
         this.users.push(res[i]);
       }
