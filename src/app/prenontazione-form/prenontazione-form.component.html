@@ -17,7 +17,7 @@
       <td>{{veicolo.annoImm}}</td>
     </tr>
   </table>
-
+  <p *ngIf="error" style="color: red">{{errorMessage}}</p>
   <form [formGroup]="form">
     <label>Data Inizio <br/>
       <input type="date" formControlName="dataInizio">

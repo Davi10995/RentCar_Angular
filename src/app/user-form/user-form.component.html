@@ -1,1 +1,22 @@
 <app-navbar></app-navbar>
+
+<div align="center">
+  <form [formGroup]="form">
+    <label>CF <br/>
+      <input type="text" formControlName="cf">
+    </label><br/><br/>
+    <label> Nome <br/>
+      <input type="text" formControlName="nome">
+    </label><br/><br/>
+    <label> Cognome <br/>
+      <input type="text" formControlName="cognome">
+    </label><br/><br/>
+    <label> Password <br/>
+      <input type="text" formControlName="password">
+    </label><br/><br/>
+    <label> Data <br/>
+      <input type="date" formControlName="data">
+    </label><br/><br/>
+    <button class="btn btn-secondary" [disabled]="!form.valid" (click)="addUser()">Salva</button>
+  </form>
+</div>

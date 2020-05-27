@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {CallService} from '../call.service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-veicolo-form',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VeicoloFormComponent implements OnInit {
 
-  constructor() { }
+  form = new FormGroup({
+    targa: new FormControl('', Validators.required),
+    modello: new FormControl('', Validators.required),
+    casaCostrutt: new FormControl('', Validators.required),
+    annoImm: new FormControl('', Validators.required)
+  });
+
+  constructor(callService: CallService) { }
 
   ngOnInit(): void {
   }
 
+  addUpdateVeicolo(){
+
+  }
 }

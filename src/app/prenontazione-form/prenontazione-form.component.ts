@@ -21,6 +21,8 @@ export class PrenontazioneFormComponent implements OnInit {
     dataFine: new FormControl('', Validators.required) }
   );
   veicolo: Veicolo;
+  error = false;
+  errorMessage: string;
 
 
   constructor(private route: ActivatedRoute,
@@ -35,5 +37,19 @@ export class PrenontazioneFormComponent implements OnInit {
 
   }
   prenota(){
+    // const data = this.form.get('dataInizio').value;
+    // console.log(data);
+    // tslint:disable-next-line:max-line-length
+    if (Date.parse(JSON.stringify(this.form.get('dataInizio').value)) < Date.now() || Date.parse(JSON.stringify(this.form.get('dataFine').value))
+      < Date.now()){
+      if (Date.parse(JSON.stringify(this.form.get('dataInizio').value)) > Date.parse(JSON.stringify(this.form.get('dataFine').value))){
+        this.error = true;
+        this.errorMessage = 'La data di fine non può essere precedente a quella di inizio prenotazione';
+      }
+      else {
+        this.error = true;
+        this.errorMessage = 'Il veicolo non può essere prenotato oggi o in data precedente ad oggi';
+      }
+    }
   }
 }

@@ -17,7 +17,14 @@
   entries
 </label>
 </div>
-<div>
+<div align="center">
+  <ng-container *ngIf="currentUser.tipo === 'SuperUser' && config.dato === 'user' ">
+    <button [routerLink]="['/userupdate',0,'details']">Aggiungi Utente</button>
+  </ng-container>
+  <ng-container *ngIf="currentUser.tipo === 'SuperUser' && config.dato === 'veicoli' ">
+    <button [routerLink]="['/veicoloupdate',0,'details']">Aggiungi Veicolo</button>
+  </ng-container>
+
   <table align="center" border="1" cellpadding="5" style="width: 50%" >
   <!--  Stampa header -->
     <tr>
@@ -32,6 +39,12 @@
         {{d[header.key]}}</td>
       <ng-container *ngIf="(config.dato === 'veicoli' && d['prenotabile'] === 'true')">
           <td><button [routerLink]="['/prenotazione', d['id'], 'details']">Prenota</button></td>
+      </ng-container>
+      <ng-container *ngIf="config.dato === 'user' && currentUser.tipo === 'SuperUser'">
+        <td>
+          <button [routerLink]="['/userupdate', d['id'], 'details']">Modifica</button>
+          <button>Elimina</button>
+        </td>
       </ng-container>
     </tr>
   </table>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {CallService} from '../call.service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-user-form',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserFormComponent implements OnInit {
 
-  constructor() { }
+  form = new FormGroup({
+    cf: new FormControl('', Validators.required),
+    nome: new FormControl('', Validators.required),
+    cognome: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+    data: new FormControl('', Validators.required)
+  });
+
+  constructor(private callService: CallService) { }
 
   ngOnInit(): void {
+  }
+
+
+  addUser(){
   }
 
 }

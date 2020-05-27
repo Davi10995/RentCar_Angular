@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit {
   operation: Operations;
   config: Config;
   constructor() {
-    console.log('local:', localStorage.getItem('currentUser'));
     this.user = JSON.parse(localStorage.getItem('currentUser'))[0];
     if (this.user.tipo === 'SuperUser'){
       this.superUser();

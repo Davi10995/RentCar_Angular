@@ -29,6 +29,7 @@ export class TableComponent implements OnInit {
   nextPageVisibility = false;
   previous = false;
   currentPage = 0;
+  currentUser: User;
   constructor(
     private callService: CallService
   ) {
@@ -36,6 +37,7 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {
     this.init();
     this.pagination();
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'))[0];
   }
 
   search(filtro, ricerca){

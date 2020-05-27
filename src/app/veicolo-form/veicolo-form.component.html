@@ -1,1 +1,20 @@
 <app-navbar></app-navbar>
+
+<div align="center">
+  <form [formGroup]="form">
+    <label>Targa <br/>
+      <input type="text" formControlName="targa">
+    </label><br/><br/>
+    <label>Modello <br/>
+      <input type="text" formControlName="modello">
+    </label><br/><br/>
+    <label>Casa Costruttrice <br/>
+      <input type="text" formControlName="casaCostrutt">
+    </label><br/><br/>
+    <label>Anno Immatricolazione <br/>
+      <input type="text" formControlName="annoImm">
+    </label>
+    <br/><br/>
+    <button class="btn btn-secondary" [disabled]="!form.valid" (click)="addUpdateVeicolo()">Salva</button>
+  </form>
+</div>

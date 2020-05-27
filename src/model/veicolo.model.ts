@@ -1,5 +1,5 @@
 
-export interface Veicolo{
+export class Veicolo{
   id: string;
   targa: string;
   modello: string;
