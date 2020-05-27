@@ -12,13 +12,7 @@ export class AppComponent {
   user: User;
 
   constructor(
-    private callService: CallService
   ) {
-    callService.getUsers().subscribe((res: User) => {
-      console.log(res);
-      this.user = res;
-      console.log(res.nome);
-    });
   }
 }
 

@@ -12,7 +12,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   errorMessage = false;
-  localStorage: WindowLocalStorage;
   profile = new FormGroup({
     username: new FormControl('',
       Validators.required),
@@ -21,7 +20,7 @@ export class LoginComponent implements OnInit {
   });
 
   users: User[] = [];
-  userLogin: User;
+  userLogin: User[] = [];
 
   constructor(callService: CallService,
               private route: ActivatedRoute,
@@ -34,17 +33,18 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (localStorage.getItem('loggedIn') === 'true'){
+      this.router.navigateByUrl('/home');
+    }
   }
 
 
   loginValidate(){
     this.userLogin = _.filter(this.users, {cf: this.profile.get('username').value, password: this.profile.get('password').value});
-    if (this.userLogin != null){
+    if (this.userLogin.length > 0){
       // from user to json
       localStorage.setItem('currentUser', JSON.stringify(this.userLogin));
-      console.log(localStorage.getItem('currentUser'));
-      // from json to user
-      console.log((JSON.parse(localStorage.getItem('currentUser'))));
+      localStorage.setItem('loggedIn', 'true');
       this.router.navigateByUrl('/home');
     }
     else {

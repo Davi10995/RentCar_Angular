@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../../model/user.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -8,11 +9,16 @@ import {User} from '../../model/user.model';
 })
 export class NavbarComponent implements OnInit {
   currentUser: User;
-  constructor() { }
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'))[0];
-    console.log('nome: ', this.currentUser.nome);
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'))[0];
+  }
+
+  logout(){
+    localStorage.clear();
+    this.router.navigateByUrl('');
   }
 
 }

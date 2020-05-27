@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+<div align="center">
+
+  <h1>Stai prenotando il seguente veicolo</h1>
+
+  <table align="center" border="1" cellpadding="5" style="width: 50%">
+    <tr>
+      <th>Targa</th>
+      <th>Modello</th>
+      <th>Casa Costruttrice</th>
+      <th>Anno Immatricolazione</th>
+    </tr>
+    <tr>
+      <td>{{veicolo.targa}}</td>
+      <td>{{veicolo.modello}}</td>
+      <td>{{veicolo.casaCostrutt}}</td>
+      <td>{{veicolo.annoImm}}</td>
+    </tr>
+  </table>
+
+  <form [formGroup]="form">
+    <label>Data Inizio <br/>
+      <input type="date" formControlName="dataInizio">
+    </label><br/><br/>
+    <label> Data Fine <br/>
+      <input type="date" formControlName="dataFine">
+    </label><br/><br/>
+    <button class="btn btn-secondary" [disabled]="!form.valid" (click)="prenota()">Prenota</button>
+  </form>
+</div>
+

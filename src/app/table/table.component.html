@@ -30,6 +30,9 @@
     <tr *ngFor="let d of dataSearch">
       <td *ngFor="let header of config.header">
         {{d[header.key]}}</td>
+      <ng-container *ngIf="(config.dato === 'veicoli' && d['prenotabile'] === 'true')">
+          <td><button [routerLink]="['/prenotazione', d['id'], 'details']">Prenota</button></td>
+      </ng-container>
     </tr>
   </table>
   <nav class="{{pagesVisibility.toString()}}" style="float: right; padding-right: 20%; padding-top: 10px" aria-label="Page navigation example">

@@ -11,14 +11,24 @@ import {AppRoutingModule, routingComponent} from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { TableComponent } from './table/table.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ParcoautoComponent } from './parcoauto/parcoauto.component';
+import { UserFormComponent } from './user-form/user-form.component';
+import { VeicoloFormComponent } from './veicolo-form/veicolo-form.component';
+import { PrenontazioneFormComponent } from './prenontazione-form/prenontazione-form.component';
+import {LoginComponent} from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponent,
     HomeComponent,
+    LoginComponent,
     TableComponent,
-    NavbarComponent
+    NavbarComponent,
+    ParcoautoComponent,
+    UserFormComponent,
+    VeicoloFormComponent,
+    PrenontazioneFormComponent
   ],
   imports: [
     BrowserModule,

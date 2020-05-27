@@ -1,16 +1,15 @@
-
-
-<form [formGroup]="profile">
-  <input type="text" placeholder="CF" formControlName="username"/><br/><br/>
-  <input type="password" placeholder="Password" formControlName="password"/><br/><br/>
-  <button type="button" [disabled]="profile.get('username').value === '' || profile.get('password').value === ''" (click)="loginValidate()">Login</button>
-</form>
-
-
-<div>
-  <table>
-    <tr *ngFor="let user of users">
-      <td>{{user.nome}}</td>
-    </tr>
-  </table>
+<div align="center">
+  <h1 style="margin-bottom: 30px">
+    Rentcar Login
+  </h1>
+  <p *ngIf="errorMessage" style="color: red">username o password errati</p>
+  <form [formGroup]="profile">
+    <label>
+      <input type="text" placeholder="CF" formControlName="username"/>
+    </label><br/><br/>
+    <label>
+      <input type="password" placeholder="Password" formControlName="password"/>
+    </label><br/><br/>
+    <button class="btn btn-primary" [disabled]="!profile.valid" (click)="loginValidate()">Login</button>
+  </form>
 </div>
