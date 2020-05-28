@@ -43,7 +43,7 @@
       <ng-container *ngIf="config.dato === 'user' && currentUser.tipo === 'SuperUser'">
         <td>
           <button [routerLink]="['/userupdate', d['id'], 'details']">Modifica</button>
-          <button>Elimina</button>
+          <button (click)="delete(d['id'])">Elimina</button>
         </td>
       </ng-container>
     </tr>

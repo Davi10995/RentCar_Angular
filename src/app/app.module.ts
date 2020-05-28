@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import {CallService} from './call.service';
+import {DataconvertService} from './utility/dataconvert.service';
 import {AppRoutingModule, routingComponent} from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { TableComponent } from './table/table.component';
@@ -16,6 +17,7 @@ import { UserFormComponent } from './user-form/user-form.component';
 import { VeicoloFormComponent } from './veicolo-form/veicolo-form.component';
 import { PrenontazioneFormComponent } from './prenontazione-form/prenontazione-form.component';
 import {LoginComponent} from './login/login.component';
+import {DatePipe} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,7 @@ import {LoginComponent} from './login/login.component';
     FormsModule,
     BrowserAnimationsModule
   ],
-  providers: [CallService],
+  providers: [CallService, DatePipe, DataconvertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

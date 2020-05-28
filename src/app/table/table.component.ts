@@ -7,7 +7,7 @@ import {Config} from '../../model/config/config.model';
 import {User} from '../../model/user.model';
 import {Veicolo} from '../../model/veicolo.model';
 import {Prenotazione} from '../../model/prenotazione.model';
-import {getLocaleFirstDayOfWeek} from '@angular/common';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -30,8 +30,13 @@ export class TableComponent implements OnInit {
   previous = false;
   currentPage = 0;
   currentUser: User;
+
+
+
+
   constructor(
-    private callService: CallService
+    private callService: CallService,
+    private route: Router
   ) {
   }
   ngOnInit(): void {
@@ -139,4 +144,36 @@ export class TableComponent implements OnInit {
         break;
     }
   }
+
+  // Dopo la cancellazione i dati visualizzati verranno aggiornati con quelli più recenti
+  delete(id){
+    if (confirm('Sei sicuro di volerlo eliminare?')) {
+      switch (this.config.dato) {
+        case 'user':
+          // Cancellazione ed aggiornamento dati
+          this.callService.deleteUser(id).toPromise().then(() => {
+            this.callService.getUsers().subscribe((res: User[]) => {
+              this.dataSearch = res;
+            });
+          });
+          break;
+        case 'veicoli':
+          this.callService.deleteVeicolo(id).toPromise().then(() => {
+            this.callService.getVeicoli().subscribe((res: Veicolo[]) => {
+              this.dataSearch = res;
+            });
+          });
+          break;
+        case 'prenotazioni':
+          this.callService.deletePrenotazione(id).toPromise().then(() => {
+            this.callService.getPrenotazioni().subscribe((res: Prenotazione[]) => {
+              this.dataSearch = res;
+            });
+          });
+          break;
+      }
+    }
+  }
+
+
 }
