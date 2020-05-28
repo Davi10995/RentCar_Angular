@@ -18,6 +18,7 @@ import { VeicoloFormComponent } from './veicolo-form/veicolo-form.component';
 import { PrenontazioneFormComponent } from './prenontazione-form/prenontazione-form.component';
 import {LoginComponent} from './login/login.component';
 import {DatePipe} from '@angular/common';
+import { ProfiloComponent } from './profilo/profilo.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {DatePipe} from '@angular/common';
     ParcoautoComponent,
     UserFormComponent,
     VeicoloFormComponent,
-    PrenontazioneFormComponent
+    PrenontazioneFormComponent,
+    ProfiloComponent
   ],
   imports: [
     BrowserModule,

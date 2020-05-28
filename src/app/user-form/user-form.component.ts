@@ -21,6 +21,7 @@ export class UserFormComponent implements OnInit {
     data: new FormControl('', Validators.required)
   });
   user: User  = new User();
+  currentUser: User;
 
   constructor(private callService: CallService,
               private dataPipe: DatePipe,
@@ -39,15 +40,17 @@ export class UserFormComponent implements OnInit {
     this.user.nome = this.form.get('nome').value;
     this.user.cognome = this.form.get('cognome').value;
     this.user.password = this.form.get('password').value;
-    this.user.tipo = 'Customer';
     this.user.data = this.form.get('data').value;
     const data = new Date(this.user.data);
     this.user.data = this.dataPipe.transform(data, this.dataConvert.local);
     if (+this.route.snapshot.paramMap.get('id') > 0){
       this.callService.updateUser(this.route.snapshot.paramMap.get('id'), this.user);
+      alert('Update effettuato!');
     }
     else {
+      this.user.tipo = 'Customer';
       this.callService.addUser(this.user);
+      alert('Utente inserito correttamente');
     }
     this.routing.navigateByUrl('/home');
   }

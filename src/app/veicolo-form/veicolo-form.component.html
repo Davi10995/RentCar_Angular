@@ -2,16 +2,27 @@
 
 <div align="center">
   <form [formGroup]="form">
-    <label>Targa <br/>
+    <label>Targa<br/>
       <input type="text" formControlName="targa">
     </label><br/><br/>
-    <label>Modello <br/>
-      <input type="text" formControlName="modello">
+    <label>Modello<br/>
+      <select formControlName="casaCostrutt">
+        <option value="Berlina">Berlina</option>
+        <option value="Coupè">Coupè</option>
+        <option value="Spider">Spider</option>
+        <option value="StationWagon">StationWagon</option>
+      </select>
     </label><br/><br/>
     <label>Casa Costruttrice <br/>
-      <input type="text" formControlName="casaCostrutt">
+      <select formControlName="modello">
+        <option value="Fiat">Fiat</option>
+        <option value="Audi">Audi</option>
+        <option value="Saab">Saab</option>
+        <option value="Volkswagen">Volkswagen</option>
+        <option value="Volvo">Volvo</option>
+      </select>
     </label><br/><br/>
-    <label>Anno Immatricolazione <br/>
+    <label>Anno Immatricolazione<br/>
       <input type="text" formControlName="annoImm">
     </label>
     <br/><br/>

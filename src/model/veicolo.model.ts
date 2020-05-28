@@ -5,5 +5,5 @@ export class Veicolo{
   modello: string;
   casaCostrutt: string;
   annoImm: string;
-  prenotabile: boolean;
+  prenotabile: string;
 }

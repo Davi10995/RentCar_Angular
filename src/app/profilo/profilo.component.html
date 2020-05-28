@@ -1,0 +1,36 @@
+<app-navbar></app-navbar>
+
+<div align="center">
+  <h1>Profilo</h1>
+
+  <div class="topnav">
+    <button   class="btn btn-primary" [routerLink]="['/userupdate', currentUser.id, 'details']">Modifica Credenziali</button>
+    <button *ngIf="currentUser.tipo === 'Customer'" class="btn btn-primary" (click)="prenotazioniUser()">Le mie prenotazioni</button>
+    <button *ngIf="currentUser.tipo === 'SuperUser'" class="btn btn-primary" (click)="tuttePrenotazioni()">Prenotazioni da approvare</button>
+  </div>
+
+  <app-table *ngIf="tablePrenotazioni" [config]="config"></app-table>
+
+  <ng-container *ngIf="daApprovare">
+    <table align="center" border="1" cellpadding="5" style="width: 50%">
+      <tr>
+        <th>Nome</th>
+        <th>Cognome</th>
+        <th>Modello</th>
+        <th>Targa</th>
+        <th>Data Inizio</th>
+        <th>Data Fine</th>
+      </tr>
+      <tr *ngFor="let prenotazione of prenotazioni">
+        <td>{{prenotazione.nomeUser}}</td>
+        <td>{{prenotazione.cognomeUser}}</td>
+        <td>{{prenotazione.modello}}</td>
+        <td>{{prenotazione.targa}}</td>
+        <td>{{prenotazione.dataInizio}}</td>
+        <td>{{prenotazione.dataFine}}</td>
+        <td><button (click)="approva(prenotazione.id)">Approva</button></td>
+      </tr>
+    </table>
+  </ng-container>
+
+</div>

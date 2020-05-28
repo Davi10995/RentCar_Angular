@@ -108,7 +108,7 @@ export class TableComponent implements OnInit {
       case 'user':
         this.callService.getUsers().subscribe((res: User[]) => {
           for (let i = 0; i < res.length; i++){
-            this.data.push(res[i]);
+            this.data = _.filter(res, {tipo: 'Customer'});
           }
           this.dataSearch = this.data;
         });
@@ -134,7 +134,10 @@ export class TableComponent implements OnInit {
               this.callService.getVeicoloById(veicoloId).subscribe((resVeic: Veicolo) => {
                 dato.modello = resVeic[0].modello;
                 dato.targa = resVeic[0].targa;
-                this.data.push(dato);
+                // SOlo le prenotazioni dell'utente in sessione
+                if (res[i].fk_user === this.currentUser.id) {
+                  this.data.push(dato);
+                }
               });
             });
 
@@ -153,7 +156,7 @@ export class TableComponent implements OnInit {
           // Cancellazione ed aggiornamento dati
           this.callService.deleteUser(id).toPromise().then(() => {
             this.callService.getUsers().subscribe((res: User[]) => {
-              this.dataSearch = res;
+              this.dataSearch = _.filter(res, {tipo: 'Customer'});
             });
           });
           break;

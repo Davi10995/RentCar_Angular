@@ -12,3 +12,7 @@
  .true{
    visibility: visible;
  }
+
+ button{
+   border-radius: 1px;
+ }

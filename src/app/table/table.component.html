@@ -1,14 +1,14 @@
 
-<div align="center" style="margin-bottom: 20px" class="{{this.config.operations.search.active.toString()}}">
+<div align="center" style="margin-top: 20px" class="{{this.config.operations.search.active.toString()}}">
   <label  >Ricerca <input #ricerca size="30" name="keyword" /></label>  <!-- -> (keyup)="search(filter.value, ricerca.value)" -->
   <select style="margin-left: 15px" #filter>
     <option value="nome">Nome</option>
     <option value="cognome">Cognome</option>
   </select>
-  <button type="button" style="margin-left: 10px" (click)="search(filter.value, ricerca.value)">Cerca</button>
+  <button style="margin-left: 10px" (click)="search(filter.value, ricerca.value)">Cerca</button>
 </div>
 <div align="center">
-<label style="margin-top: 20px">Show
+<label style="margin-top: 10px">Show
   <select [(ngModel)]="rows" (change)="pagination()">
     <option *ngFor="let rows of config.operations.pagination.rowsForPage" value="{{rows}}">
       {{rows}}
@@ -19,10 +19,10 @@
 </div>
 <div align="center">
   <ng-container *ngIf="currentUser.tipo === 'SuperUser' && config.dato === 'user' ">
-    <button [routerLink]="['/userupdate',0,'details']">Aggiungi Utente</button>
+    <button class="btn-info" style="margin-bottom: 10px" [routerLink]="['/userupdate',0,'details']">Aggiungi Utente</button>
   </ng-container>
   <ng-container *ngIf="currentUser.tipo === 'SuperUser' && config.dato === 'veicoli' ">
-    <button [routerLink]="['/veicoloupdate',0,'details']">Aggiungi Veicolo</button>
+    <button class="btn-info" style="margin-bottom: 10px" [routerLink]="['/veicoloupdate',0,'details']">Aggiungi Veicolo</button>
   </ng-container>
 
   <table align="center" border="1" cellpadding="5" style="width: 50%" >
@@ -43,7 +43,13 @@
       <ng-container *ngIf="config.dato === 'user' && currentUser.tipo === 'SuperUser'">
         <td>
           <button [routerLink]="['/userupdate', d['id'], 'details']">Modifica</button>
-          <button (click)="delete(d['id'])">Elimina</button>
+          <button style="margin: 5px" class="btn-warning" (click)="delete(d['id'])">Elimina</button>
+        </td>
+      </ng-container>
+      <ng-container *ngIf="config.dato === 'veicoli' && currentUser.tipo === 'SuperUser'">
+        <td>
+          <button [routerLink]="['/veicoloupdate', d['id'], 'details']">Modifica</button>
+          <button style="margin: 5px" class="btn-warning" (click)="delete(d['id'])">Elimina</button>
         </td>
       </ng-container>
     </tr>

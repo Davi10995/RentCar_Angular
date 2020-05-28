@@ -1,22 +1,45 @@
 <app-navbar></app-navbar>
 <div align="center">
 
-  <h1>Stai prenotando il seguente veicolo</h1>
+  <ng-container *ngFor="prenotazione.fk_veicolo === null || prenotazione.fk_veicolo === ''">
+    <h1>Stai prenotando il seguente veicolo</h1>
 
-  <table align="center" border="1" cellpadding="5" style="width: 50%">
-    <tr>
-      <th>Targa</th>
-      <th>Modello</th>
-      <th>Casa Costruttrice</th>
-      <th>Anno Immatricolazione</th>
-    </tr>
-    <tr>
-      <td>{{veicolo.targa}}</td>
-      <td>{{veicolo.modello}}</td>
-      <td>{{veicolo.casaCostrutt}}</td>
-      <td>{{veicolo.annoImm}}</td>
-    </tr>
-  </table>
+    <table align="center" border="1" cellpadding="5" style="width: 50%">
+      <tr>
+        <th>Targa</th>
+        <th>Modello</th>
+        <th>Casa Costruttrice</th>
+        <th>Anno Immatricolazione</th>
+      </tr>
+      <tr>
+        <td>{{veicolo.targa}}</td>
+        <td>{{veicolo.modello}}</td>
+        <td>{{veicolo.casaCostrutt}}</td>
+        <td>{{veicolo.annoImm}}</td>
+      </tr>
+    </table>
+  </ng-container>
+  <ng-container *ngIf="prenotazione.fk_veicolo !== ''">
+    <h1>Stai modificando la seguente prenotazione</h1>
+    <table align="center" border="1" cellpadding="5" style="width: 50%">
+      <tr>
+        <th>Nome</th>
+        <th>Cognome</th>
+        <th>Modello</th>
+        <th>Targa</th>
+        <th>Data Inizio</th>
+        <th>Data Fine</th>
+      </tr>
+      <tr>
+        <td>{{prenotazione.nomeUser}}</td>
+        <td>{{prenotazione.cognomeUser}}</td>
+        <td>{{prenotazione.modello}}</td>
+        <td>{{prenotazione.targa}}</td>
+        <td>{{prenotazione.dataInizio}}</td>
+        <td>{{prenotazione.dataFine}}</td>
+      </tr>
+    </table>
+  </ng-container>
   <p *ngIf="error" style="color: red">{{errorMessage}}</p>
   <form [formGroup]="form">
     <label>Data Inizio <br/>

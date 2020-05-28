@@ -7,7 +7,7 @@
       "cognome": "Rossi",
       "password": "mario",
       "tipo": "SuperUser",
-      "data": "10-10-1995"
+      "data": "06/05/2020"
     },
     {
       "cf": "marco",
@@ -34,6 +34,14 @@
       "modello": "Spider",
       "casaCostrutt": "VolksWagen",
       "annoImm": "2012",
+      "prenotabile": "false"
+    },
+    {
+      "id": 3,
+      "targa": "CA444LM",
+      "modello": "Volkswagen",
+      "casaCostrutt": "Spider",
+      "annoImm": "2012",
       "prenotabile": "true"
     }
   ],
@@ -42,8 +50,16 @@
       "id": 1,
       "dataInizio": "10/05/2020",
       "dataFine": "10/06/2020",
-      "fk_user": "2",
-      "fk_veicolo": "1",
+      "fk_user": 2,
+      "fk_veicolo": 1,
+      "approvata": "true"
+    },
+    {
+      "id": 1,
+      "dataInizio": "10/05/2020",
+      "dataFine": "10/06/2020",
+      "fk_user": 1,
+      "fk_veicolo": 2,
       "approvata": "true"
     }
   ]
